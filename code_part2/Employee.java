@@ -1,36 +1,32 @@
+/* * 
+ * This class constructs Employee objects and contains the necessary functions to display an Employee's info
+ * 
+ * @author Sadie Sider-Echenberg, 300248944
+ */
+
+import java.util.*;  // to use the Arrays.toString method
+
 public class Employee {
 	private String name; 
 	private int hours; 
 	private double rate; 
 	private Address [] arrayAddresses; 
-	private int spot; 
 
-	public Employee (String name, int hours, double rate){
+	public Employee (String name, int hours, double rate, Address[] arrayAddresses){ // variables all employees have 
 		this.name= name; 
 		this.hours= hours; 
 		this.rate= rate; 
+		this.arrayAddresses= arrayAddresses; 
 
-		arrayAddresses= new Address[5];
-		spot= 0; 
 	}
 
-	public void add (Address newadd){
-		arrayAddresses[spot]= newadd; 
-		spot++; 
-	}
 
-	public String getName(){
-		return name; 
-	}
+	public String toString(){ // to string for testing purposes 
 
-	public int getHours(){
-		return hours; 
-	}
+		String arString= Arrays.toString(arrayAddresses); 
 
-	public double getRate(){
-		return rate; 
+		String full = "Employee:"+"\n"+"name- "+name+"\n"+"hours- "+hours+"\n"+"rate- "+rate+"\n"+"address(s)- "+ arString; 
+		return full; 
 	}
-
 	
-
 }
