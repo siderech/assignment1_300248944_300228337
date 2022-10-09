@@ -21,20 +21,20 @@ public class PointCPTest
     // Check if the user input coordinates from the command line
     // If he did, extract the 2 necessary coordinates to create CP2 and CP3 objects
     // If he did not, prompt the user for them.
-    String type = args[0].toUpperCase().charAt(0)
-    double coord_1 = Double.valueOf(args[1]).doubleValue()
-    double coord_2 = Double.valueOf(args[2]).doubleValue()
     
     try
     {
-      if (type == "P") {
-        runnablePoint = PointCP2(coord_1, coord_2) // create a polar point object
-      } else if (type == "C") {
-        runnablePoint = PointCP3(coord_1, coord_2) //create a coordinate point object
-      }
-    }
+       char type = args[0].toUpperCase().charAt(0);
+      double coord_1 = Double.valueOf(args[1]).doubleValue();
+      double coord_2 = Double.valueOf(args[2]).doubleValue();
 
-    runTests(runnablePoint);// run tests with appropriate object 
+      if (type == 'P') {
+        runnablePoint = new PointCP2(coord_1, coord_2); // create a polar point object
+      } else 
+        runnablePoint = new PointCP3(coord_1, coord_2); //create a coordinate point object
+
+      runTests(runnablePoint);// run tests with appropriate object 
+    }
 
     catch(Exception e)
     {
@@ -50,10 +50,12 @@ public class PointCPTest
         char typeCoord = point.getTypeCoord();
 
         if (typeCoord == 'P') {
-            runnablePoint = PointCP2(point.getRho(), point.getTheta()) // create a polar point object with vals given
-         } else if (typeCoord == 'C') {
-            runnablePoint =  PointCP3(point.getX(), point.getY())//create a coordinate point objects with coordinate values given
+            runnablePoint = new PointCP2(point.getRho(), point.getTheta()); // create a polar point object with vals given
          } 
+
+        else  
+            runnablePoint =  new PointCP3(point.getX(), point.getY());//create a coordinate point objects with coordinate values given
+         
 
          runTests(runnablePoint); // run tests 
       }
@@ -66,7 +68,7 @@ public class PointCPTest
     }
   }
 
-  private void runTests(PointCP5 point) { //method to run tests and make sure the 2 classe's methods work 
+  private static void runTests(PointCP5 point) { //method to run tests and make sure the 2 classe's methods work 
     System.out.println("\nYou entered:\n" + point);
 
     System.out.println("\nAfter asking to process a Cartesian:\n" + point);
@@ -123,7 +125,7 @@ public class PointCPTest
        
         // Initialize the buffer before we read the input
         for(int k=0; k<1024; k++)
-        	buffer[k] = '\u0020';        
+          buffer[k] = '\u0020';        
              
         System.in.read(buffer);
         theInput = new String(buffer).trim();
@@ -155,8 +157,8 @@ public class PointCPTest
         }
         catch(Exception e)
         {
-        	System.out.println("Incorrect input");
-        	isOK = false;  //Reset flag as so not to end while loop
+          System.out.println("Incorrect input");
+          isOK = false;  //Reset flag as so not to end while loop
         }
       }
 
