@@ -31,11 +31,16 @@ public class PointCP2
    */
   public PointCP2(char type, double xOrRho, double yOrTheta)
   {
-    if(type != 'C' && type != 'P')
+    if(type != 'C' && type != 'P'){
       throw new IllegalArgumentException();
+    }
 
-    else if 
-      // they give type cartesian (change to polar)
+    else if (type== 'C'){// they give type cartesian (must change to polar)
+      this.rho= ( Math.sqrt( (xOrRho*xOrRho) + (yOrTheta*yOrTheta)) );
+      this.theta= Math.atan2(yOrTheta, xOrRho); //returns quotient of arctan in radians
+      this.theta= Math.toDegrees(this.theta); //convert to degrees 
+
+    }
 
     else {
       this.rho= xOrRho;
@@ -81,7 +86,7 @@ public class PointCP2
       double yFromTheta = getY();
       double xFromRho = getX();
     
-      typeCoord = 'C';  //Change coord type identifier
+      typeCoord = 'C';  //update coord type 
 
       tmpPoint= new PointCP2 (typeCoord, xFromRho, yFromTheta);
       return tmpPoint; 
