@@ -52,6 +52,9 @@ public class PointCP
   
   //Instance methods **************************************************
  
+  public char getTypeCoord() {
+    return typeCoord;
+  }
  
   public double getX()
   {
